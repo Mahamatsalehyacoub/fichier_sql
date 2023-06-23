@@ -1,0 +1,80 @@
+-- Database: solide
+-- DROP DATABASE IF EXISTS solide;
+CREATE DATABASE solide
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'fr_FR.UTF-8'
+    LC_CTYPE = 'fr_FR.UTF-8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+	-- Création de la table Entreprise
+	
+CREATE TABLE Entreprise (
+  ID_Entreprise SERIAL PRIMARY KEY,
+  Nom_Entreprise varchar(255),
+  Adresse_Entreprise varchar(255),
+  Telephone_Entreprise varchar(20) 
+);
+
+SELECT* FROM Entreprise 
+	
+
+-- Création de la table Client
+CREATE TABLE Client (
+ ID_Client SERIAL PRIMARY KEY,
+  Nom_Client varchar(255),
+  Adresse_Client varchar(255),
+  Telephone_Client varchar(20) 
+);
+	
+	SELECT* FROM Client
+	
+	
+-- Création de la table Produit
+CREATE TABLE Produit (
+ ID_Produit SERIAL PRIMARY KEY,
+  Nom_Produit varchar(255),
+  Description_Produit text,
+  Prix_Produit decimal(10, 2)
+);	
+	
+	SELECT* FROM Produit
+	
+	
+	
+	-- Création de la table Commande
+CREATE TABLE Commande (
+  ID_Commande SERIAL PRIMARY KEY, 
+  ID_Client INT,
+  Date_Commande date,
+  Statut_Commande varchar(50),
+  PRIMARY KEY ( ID_Commande,ID_Client)
+);
+	
+	
+	SELECT* FROM Commande
+	
+	
+	
+	-- Création de la table Detail_Commande
+CREATE TABLE Detail_Commande (
+  ID_Detail_Commande SERIAL PRIMARY KEY,
+  ID_Commande INT,
+  ID_Produit INT,
+  Quantite INT,
+  Prix_Unitaire decimal(10, 2),
+  FOREIGN KEY (ID_Commande) REFERENCES ID_Commande,
+  FOREIGN KEY (ID_Produit) REFERENCES ID_Produit
+);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
